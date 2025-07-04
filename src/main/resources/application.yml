@@ -1,4 +1,34 @@
+server:
+  port: '8082'
+
 spring:
+  profiles:
+    active: qa
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    password: password
+  application:
+    name: demo
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: Welcome to Hello Controller!!
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -12,5 +42,22 @@ spring:
     show-sql: 'true'
 welcome:
   message: Welcome to Hello Controller!!
-server:
-  port: '8082'
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-prod
+    password: password
+  application:
+    name: demo
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: Welcome to Hello Controller!!
